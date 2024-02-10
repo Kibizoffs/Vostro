@@ -1,0 +1,8 @@
+*.swp
+*.ppu
+*.o
+*.exe
+
+/.vscode/
+/log/
+vostro

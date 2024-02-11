@@ -15,14 +15,18 @@ implementation
 
     procedure Launch_window();
     begin
+        {
         Debug('Driver: ' + IntToStr(GraphDriver) + '; Mode: ' + IntToStr(GraphMode));
         DetectGraph(GraphDriver, GraphMode);
         Debug('Driver: ' + IntToStr(GraphDriver) + '; Mode: ' + IntToStr(GraphMode));
         InitGraph(GraphDriver, GraphMode, '');
+        }
 
         Cross_finder();
 
         Read(ch);
+        {
         CloseGraph();
+        }
     end;
 end.

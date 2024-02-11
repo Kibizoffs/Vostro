@@ -1,5 +1,5 @@
 <center>
-    <img src='media/photo/logo.png' alt='logo' width='50%'>
+    <img src='photo/logo.png' alt='logo' width='50%'>
 </center>
 
 <h2>Предварительная установка</h2>

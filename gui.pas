@@ -1,16 +1,16 @@
-unit GUI; {Графика}
+unit GUI; {Интерфейс}
 
 interface
     procedure Launch_window();
+    procedure Draw();
 
 implementation
     uses
         PtcGraph, SysUtils, {Стандартное}
-        Cross,              {Нахождение пересечений корней}
-        Output;             {Процесс вывода}
+        Output;             {Вывод}
         
     var
-        GraphDriver, GraphMode: integer;
+        {GraphDriver, GraphMode: byte;}
         ch: char;
 
     procedure Launch_window();
@@ -22,11 +22,14 @@ implementation
         InitGraph(GraphDriver, GraphMode, '');
         }
 
-        Cross_finder();
-
         Read(ch);
         {
         CloseGraph();
         }
+    end;
+
+    procedure Draw();
+    begin
+        Read(ch);
     end;
 end.

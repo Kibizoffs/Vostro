@@ -1,26 +1,48 @@
-unit Cross; {Нахождение пересечений корней}
+unit Cross; {Пересечения}
 
 interface
-    var
-        crosses: array [1..3] of double;
+    type
+        coordinate = record
+            x: double;
+            y: double;
+        end;
 
-    procedure Cross_finder();
+    var
+        crosses: array [1..3] of coordinate;
+
+    procedure Manage_root();
 
 implementation
     uses
+        SysUtils,  {Стандартное}
+        Global,    {Глобальное}
         Input,     {Обработка ввода}
         Functions, {Функции}
         Output;    {Процесс вывода}
 
-    function f4(i, j: byte; c: double): double;
+    {Метод бисекции}
+    procedure Root(f, g: fun_type; a, b, eps_x: double; var x: double);
+    var
+        c: double;
     begin
-        f4 := fun_arr[i](c) - fun_arr[j](c);
+        c := (a + b) / 2;
+        while b - a > eps_x do
+        begin
+            if ((f(a) - g(a)) * (f(c) - g(c)) < 0) then
+                b := c
+            else if ((f(c) - g(c)) * (f(b) - g(b)) < 0) then
+                a := c
+            else
+                break;
+            c := (a + b) / 2
+        end;
+        x := c
     end;
 
-    procedure Cross_finder();
+    procedure Manage_root();
     var
         i, j, k: byte;
-        a, b, c, y: double;
+        a, b: double;
     begin
         Set_fun_arr();
 
@@ -31,21 +53,19 @@ implementation
             begin 
                 a := sections[k*2-1];
                 b := sections[k*2];
-                c := (a + b) / 2;
-                while b - a > eps_x do
-                begin
-                    if (f4(i, j, a) * f4(i, j, c) < 0) then
-                        b := c
-                    else if (f4(i, j, c) * f4(i, j, b) < 0) then
-                        a := c
-                    else
-                        break;
-                    c := (a + b) / 2
-                end;
-                crosses[k] := c;
+                if a > b then
+                    Write_err(ERR_BAD_SECTION, '');
+                Root(fun_arr[i], fun_arr[j],
+                    a, b, eps_x, crosses[k].x);
+                crosses[k].y := fun_arr[i](crosses[k].x);
                 inc(k)
             end;
         end;
-        WriteLn(crosses[1], crosses[2], crosses[3])
+
+        Debug(
+            MSG_CROSSES + #10 +
+            '(' + FloatToStr(crosses[1].x) + ', ' + FloatToStr(crosses[1].y) + #10 +
+            '(' + FloatToStr(crosses[2].x) + ', ' + FloatToStr(crosses[2].y) + #10 +
+            '(' + FloatToStr(crosses[3].x) + ', ' + FloatToStr(crosses[3].y));
     end;
 end.

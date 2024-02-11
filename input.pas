@@ -8,9 +8,8 @@ interface
 
 implementation
     uses
-        Global,        {Глобальное}
-        GUI,           {Графика}
-        Output;        {Вывод}
+        Global, {Глобальное}
+        Output; {Вывод}
 
     function Eps_str_to_dbl(eps_str: string; s: string): double;
     begin
@@ -36,7 +35,5 @@ implementation
         eps_s_str := ParamStr(2);
         eps_s := Eps_str_to_dbl(eps_s_str, 'погрешность площади');
         scale_str := ParamStr(3); {???}
-
-        Launch_window()
     end;
 end.

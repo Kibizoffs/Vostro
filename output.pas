@@ -1,4 +1,4 @@
-unit Output; {Процесс вывода}
+unit Output; {Вывод}
 
 interface
     procedure Prepare_output_file();
@@ -38,7 +38,7 @@ implementation
         current_time: string;
     begin
         current_time := FormatDateTime('hh:nn:ss.zzz', Now);
-        WriteLn(output_file, current_time + TIME_SEPARATOR + msg);
+        WriteLn(output_file, current_time + TIME_SEPARATOR + #10 + msg);
     end;
 
     procedure Debug(const msg: string);

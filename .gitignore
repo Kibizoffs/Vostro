@@ -2,6 +2,8 @@
 *.ppu
 *.o
 *.exe
+*.log
+*.res
 
 /.vscode/
 vostro

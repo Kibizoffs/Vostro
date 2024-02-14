@@ -2,24 +2,35 @@ unit Input; {Обработка ввода}
 
 interface
     var
-        eps_x, eps_s: double;
+        eps_x, eps_s, scale: double;
         
     procedure Read_input();
 
 implementation
     uses
-        Global, {Глобальное}
         Output; {Вывод}
 
-    function Eps_str_to_dbl(eps_str: string; s: string): double;
+    const
+        MSG_X = 'погрешность абсцисс пересечений графиков';
+        MSG_S = 'погрешность площади';
+        MSG_SCALE = 'масштаб';
+
+    function Str_to_dbl(str: string; msg: string): double;
+    var
+        i: integer;
+        err_code: byte;
     begin
-        if eps_str[2] = ',' then
-            eps_str[2] := '.';
-        Val(eps_str, eps_str_to_dbl, err_code);
+        for i := 1 to Length(str) do
+            if str[i] = ',' then
+            begin
+                str[i] := '.';
+                break
+            end;
+        Val(str, str_to_dbl, err_code);
         if err_code <> 0 then
-            Write_err(ERR_BAD_PARAM, s)
-        else if (eps_str_to_dbl <= 0) or (eps_str_to_dbl >= 1) then
-            Write_err(ERR_BAD_PARAM, s);
+            Write_err(ERR_BAD_PARAM, msg)
+        else if ((msg <> 'масштаб') and ((str_to_dbl <= 0) or (str_to_dbl >= 1))) then
+            Write_err(ERR_BAD_PARAM, msg);
     end;
 
     procedure Read_input();
@@ -31,9 +42,10 @@ implementation
             Write_err(ERR_TOO_MANY_PARAMS, '');
         {ParamStr(0) соответствует названию исполняемого файла}
         eps_x_str := ParamStr(1);
-        eps_x := Eps_str_to_dbl(eps_x_str, 'погрешность корней пересечения графиков');
+        eps_x := Str_to_dbl(eps_x_str, MSG_X);
         eps_s_str := ParamStr(2);
-        eps_s := Eps_str_to_dbl(eps_s_str, 'погрешность площади');
-        scale_str := ParamStr(3); {???}
+        eps_s := Str_to_dbl(eps_s_str, MSG_S);
+        scale_str := ParamStr(3);
+        scale := Str_to_dbl(scale_str, MSG_SCALE);
     end;
 end.

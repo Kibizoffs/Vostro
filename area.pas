@@ -1,54 +1,51 @@
 unit Area; {Площадь}
 
 interface
-        
+    var
+        s: double;
+
     procedure Manage_area();
 
 
 implementation
     uses
-        Cross,     {Пересечения}
-        Functions; {Мат. функции}
-
-    procedure Order_fun(fun_arr: array of fun_type; a, b: coordinate);
-    var
-        c: double;
-        i, j: byte;
-        temp_fun: fun_type;
-    begin
-        c := (a.x + b.x) / 2;
-        for i := 1 to 2 do
-        begin 
-            for j := (i+1) to 3 do
-            begin 
-                if fun_arr[i](c) > fun_arr[j](c) then
-                begin
-                    temp_fun := fun_arr[i];
-                    fun_arr[i] := fun_arr[j];
-                    fun_arr[j] := temp_fun
-                end;
-            end;
-        end;
-    end;
+        Math, SysUtils, {Стандартное}
+        Cross,          {Пересечения}
+        Functions,      {Мат. функции}
+        Input,          {Ввод}
+        Output;         {Вывод}
         
     function Integral(f: fun_type; a, b, eps_s: double): double;
+    var
+        n, i: longint;
     begin
-        WriteLn('yo')
+        n := Ceil((b - a)/eps_s);
+        integral := (f(a) + f(b))/2;
+        for i := 1 to n - 1 do
+            integral += f(a + i*eps_s);
+        integral *= eps_s
     end;
 
     procedure Manage_area();
     var
-        fun_arr_copy: array[1..3] of fun_type;
         i: byte;
-        s: double;
+        s1, s2: double;
     begin
         s := 0;
         for i := 1 to 2 do
         begin
-            fun_arr_copy := fun_arr;
-            Order_fun(fun_arr_copy, crosses[i], crosses[i+1]);
-            s := s {}
+            s1 := abs(Integral(coords[i].g, coords[i].x, coords[i+1].x, eps_s));
+            s2 := abs(Integral(coords[i].h, coords[i].x, coords[i+1].x, eps_s));
+            s += abs(s1 - s2)
         end;
 
+        Write_ans(
+            fun_arr.s[1] + #10 +
+            fun_arr.s[2] + #10 +
+            fun_arr.s[3] + #10 +
+            MSG_CROSSES + '(' + FloatToStr(coords[1].x) + ', ' + FloatToStr(coords[1].y) + ')' + #10 + 
+            '   (' + FloatToStr(coords[2].x) + ', ' + FloatToStr(coords[2].y) + ')' + #10 + 
+            '   (' + FloatToStr(coords[3].x) + ', ' + FloatToStr(coords[3].y) + ')' + #10 +
+            MSG_AREA + FloatToStr(s))
     end;
 end.

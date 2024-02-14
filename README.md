@@ -12,7 +12,7 @@
     <li>Windows: <code>vostro.exe &lt;параметры&gt;</code></li>
 </ul>
 <code>
-    &lt;параметры&gt; ::= &lt;epsilon для площади&gt; &lt;epsilon для пересечений&gt; &lt;масштаб&gt;
+    &lt;параметры&gt; ::= &lt;epsilon для пересечений&gt; &lt;epsilon для площади&gt; &lt;масштаб&gt;
 </code></br></br>
 
 <p>Задание №3 из МГУ от А.Н.Сальникова</p>

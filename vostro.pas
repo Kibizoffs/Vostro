@@ -19,11 +19,11 @@ begin
 
     Read_input(); {Ввод}
 
-    Launch_window(); {Интерфейс}
-
     Manage_root(); {Пересечения}
 
     Manage_area(); {Площадь}
 
-    Draw(); {Интерфейс}
+    Launch_window(); {Интерфейс}
+
+    ReadLn();
 end.

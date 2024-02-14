@@ -1,6 +1,22 @@
 unit Output; {Вывод}
 
 interface
+    const
+        ERR_TOO_MANY_PARAMS = 'Слишком много параметров';
+        ERR_BAD_PARAM = 'Плохой параметр: ';
+        ERR_LOG_FILE = 'Возникла проблема с файлом журнала';
+        ERR_BAD_SECTION = 'Плохой сегмент';
+        ERR_BAD_NUM = 'Плохое число';
+        ERR_NO_GRAPHICS = 'Возникла проблема с графикой';
+        MSG_DEBUG = 'Отладка = ';
+        MSG_LOG = 'Логирование = ';
+        MSG_THEME = 'Тема = ';
+        MSG_CROSSES = 'x: ';
+        MSG_AREA = 's: ';
+
+    var
+        output_file: text;
+        
     procedure Prepare_output_file();
     procedure Debug(const msg: string);
     procedure Write_err(const msg_1: string; const msg_2: string);
@@ -10,14 +26,15 @@ interface
 implementation
     uses
         Crt, SysUtils, {Стандартное}
-        Global,        {Глобальное}
-        Utils;         {Дополнительное}
+        Config;        {Конфигурация}
 
     const
         LOG_PATH = 'vostro.log';
         TIME_SEPARATOR = ': ';
 
     procedure Prepare_output_file();
+    var
+        err_code: byte;
     begin
         if not FileExists(LOG_PATH) then
             FileCreate(LOG_PATH);

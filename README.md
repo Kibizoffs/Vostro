@@ -11,9 +11,7 @@
     <li>UNIX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>./vostro &lt;параметры&gt;</code></li>
     <li>Windows: <code>vostro.exe &lt;параметры&gt;</code></li>
 </ul>
-<code>
-    &lt;параметры&gt; ::= &lt;epsilon для пересечений&gt; &lt;epsilon для площади&gt; &lt;масштаб&gt;
-</code></br></br>
+<code>&lt;параметры&gt; ::= &lt;epsilon для пересечений&gt; &lt;epsilon для площади&gt; &lt;масштаб&gt;</code></br></br>
 
 <p>Задание №3 из МГУ от А.Н.Сальникова</p>
 

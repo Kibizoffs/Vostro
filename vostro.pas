@@ -24,8 +24,7 @@ begin
     Manage_area(); {Площадь}
 
     {Интерфейс}
-    Launch_window();
-    Draw();
+    Load_GUI();
 
-    ReadLn();
+    ReadLn()
 end.

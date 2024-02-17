@@ -29,7 +29,7 @@ implementation
         Val(str, str_to_dbl, err_code);
         if err_code <> 0 then
             Write_err(ERR_BAD_PARAM, msg)
-        else if ((msg <> 'масштаб') and ((str_to_dbl <= 0) or (str_to_dbl >= 1))) then
+        else if ((str_to_dbl <= 0) or (msg <> 'масштаб') and (str_to_dbl > 1)) then
             Write_err(ERR_BAD_PARAM, msg);
     end;
 
@@ -37,6 +37,7 @@ implementation
     var
         eps_x_str, eps_s_str, scale_str: string;
     begin
+        Debug('Начало чтения и обработки входных данных');
         {Обработка параметров}
         if ParamCount > 3 then
             Write_err(ERR_TOO_MANY_PARAMS, '');
@@ -47,5 +48,6 @@ implementation
         eps_s := Str_to_dbl(eps_s_str, MSG_S);
         scale_str := ParamStr(3);
         scale := Str_to_dbl(scale_str, MSG_SCALE);
+        Debug('Конец чтения и обработки входных данных');
     end;
 end.

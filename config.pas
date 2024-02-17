@@ -40,5 +40,6 @@ implementation
             debug(MSG_DEBUG + Bool_to_str(ini_debug));
             debug(MSG_LOG + Bool_to_str(ini_log))
         end;
+        Debug('Конец загрузки конфигурации')
     end;
 end.

@@ -11,11 +11,11 @@ unit Functions; {Мат. функции}
 
 interface
     type
-        fun_type = function(x: double): double;
+        fun_t = function(x: double): double;
         fun_arr_type = record
-            f: array[1..3] of fun_type;
+            f: array[1..3] of fun_t;
             s: array[1..3] of string;
-            p: array[1..3] of fun_type
+            p: array[1..3] of fun_t
         end; 
 
     const
@@ -82,27 +82,6 @@ implementation
             inside := false
     end;
 
-    function P1(x: double): double;
-    begin
-        {if x ... then
-            Write_err(ERR_BAD_NUM, '')
-        else} p1 := -1/exp(x) + 3*x
-    end;
-
-    function P2(x: double): double;
-    begin
-        {if x ... then
-            Write_err(ERR_BAD_NUM, '')
-        else} p2 := Power(x, 2) - 2*x
-    end;
-    
-    function P3(x: double): double;
-    begin
-        {if x ... then
-            Write_err(ERR_BAD_NUM, '')
-        else} p3 := ln(abs(x))
-    end;
-
     procedure Set_fun_arr();
     begin
         stop_when_undef := true;
@@ -111,9 +90,6 @@ implementation
         fun_arr.f[3] := @F3;
         fun_arr.s[1] := F1_STR;
         fun_arr.s[2] := F2_STR;
-        fun_arr.s[3] := F3_STR;
-        fun_arr.p[1] := @P1;
-        fun_arr.p[2] := @P2;
-        fun_arr.p[3] := @P3;
+        fun_arr.s[3] := F3_STR
     end;
 end.

@@ -14,30 +14,55 @@ implementation
         Functions,      {Мат. функции}
         Input,          {Ввод}
         Output;         {Вывод}
-        
-    function Integral(f: fun_type; a, b, eps_s: double): double;
+    
+    function Integrate(f: fun_t; a, b: double; n: longint): double;
     var
-        n, i: longint;
+        dif_x: double;
     begin
-        n := Ceil((b - a)/eps_s);
-        integral := (f(a) + f(b))/2;
-        for i := 1 to n - 1 do
-            integral += f(a + i*eps_s);
-        integral *= eps_s
+        dif_x := (b - a) / n;
+        Integrate := (f(a) + f(b)) / 2;
+        a += dif_x;
+        while a < b do
+        begin
+            Integrate += f(a);
+            a += dif_x
+        end;
+        Integrate *= dif_x
+    end;
+
+    function Integral(f: fun_t; a, b, eps_s: double): double;
+    var
+        dif_s: double;
+        n: longint;
+    begin
+        dif_s := 1;
+        n := 10;
+        while dif_s > eps_s do
+        begin
+            dif_s := (abs(Integrate(f, a, b, n) - Integrate(f, a, b, 2*n))) / 3; {Правило Рунге}
+            n *= 2
+        end;
+        Debug('n: ' + IntToStr(n));
+        Integral := abs(Integrate(f, a, b, n))
     end;
 
     procedure Manage_area();
     var
-        i: byte;
         s1, s2: double;
     begin
         s := 0;
-        for i := 1 to 2 do
-        begin
-            s1 := abs(Integral(coords[i].g, coords[i].x, coords[i+1].x, eps_s));
-            s2 := abs(Integral(coords[i].h, coords[i].x, coords[i+1].x, eps_s));
-            s += abs(s1 - s2)
-        end;
+        Debug('Вычисление площади на 1-й области');
+        Debug('Вычисление интеграла для 1-й первообразной');
+        s1 := Integral(coords[1].g, coords[1].x, coords[2].x, eps_s);
+        Debug('Вычисление интеграла для 2-й первообразной');
+        s2 := Integral(coords[1].h, coords[1].x, coords[2].x, eps_s);
+        s += abs(s1 - s2);
+        Debug('Вычисление площади на 2-й области');
+        Debug('Вычисление интеграла для 1-й первообразной');
+        s1 := Integral(coords[3].g, coords[2].x, coords[3].x, eps_s);
+        Debug('Вычисление интеграла для 2-й первообразной');
+        s2 := Integral(coords[3].h, coords[2].x, coords[3].x, eps_s);
+        s += abs(s1 - s2);
 
         Write_ans(
             fun_arr.s[1] + #10 +

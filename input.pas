@@ -1,4 +1,5 @@
-unit Input; {Обработка ввода}
+{Обработка ввода}
+unit Input;
 
 interface
     var
@@ -9,11 +10,6 @@ interface
 implementation
     uses
         Output; {Вывод}
-
-    const
-        MSG_X = 'погрешность абсцисс пересечений графиков';
-        MSG_S = 'погрешность площади';
-        MSG_SCALE = 'масштаб';
 
     function Str_to_dbl(str: string; msg: string): double;
     var
@@ -43,11 +39,11 @@ implementation
             Write_err(ERR_TOO_MANY_PARAMS, '');
         {ParamStr(0) соответствует названию исполняемого файла}
         eps_x_str := ParamStr(1);
-        eps_x := Str_to_dbl(eps_x_str, MSG_X);
+        eps_x := Str_to_dbl(eps_x_str, 'погрешность абсцисс пересечений графиков');
         eps_s_str := ParamStr(2);
-        eps_s := Str_to_dbl(eps_s_str, MSG_S);
+        eps_s := Str_to_dbl(eps_s_str, 'погрешность площади');
         scale_str := ParamStr(3);
-        scale := Str_to_dbl(scale_str, MSG_SCALE);
+        scale := Str_to_dbl(scale_str, 'масштаб');
         Debug('Конец чтения и обработки входных данных');
     end;
 end.

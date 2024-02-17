@@ -8,11 +8,6 @@ interface
         ERR_BAD_SECTION = 'Плохой сегмент';
         ERR_BAD_NUM = 'Плохое число';
         ERR_NO_GRAPHICS = 'Возникла проблема с графикой';
-        MSG_DEBUG = 'Отладка = ';
-        MSG_LOG = 'Логирование = ';
-        MSG_THEME = 'Тема = ';
-        MSG_CROSSES = 'x: ';
-        MSG_AREA = 's: ';
 
     var
         output_file: text;

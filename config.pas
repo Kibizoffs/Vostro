@@ -37,8 +37,8 @@ implementation
         if ini.ReadString('settings', 'debug', '0') = '1' then
         begin
             ini_debug := true;
-            debug(MSG_DEBUG + Bool_to_str(ini_debug));
-            debug(MSG_LOG + Bool_to_str(ini_log))
+            debug('Отладка = ' + Bool_to_str(ini_debug));
+            debug('Логирование = ' + Bool_to_str(ini_log))
         end;
         Debug('Конец загрузки конфигурации')
     end;

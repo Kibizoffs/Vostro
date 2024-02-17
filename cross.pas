@@ -67,8 +67,8 @@ implementation
                 Root(fun_arr.f[i], fun_arr.f[j],
                     a, b, eps_x, coords[k].x);
                 coords[k].y := fun_arr.f[i](coords[k].x);
-                coords[k].g := fun_arr.f[i]; {Первообразная первой мат. фун. пересечения}
-                coords[k].h := fun_arr.f[j]; {Первообразная второй мат. фун. пересечения}
+                coords[k].g := fun_arr.f[i]; {1-ая мат. функция пересечения}
+                coords[k].h := fun_arr.f[j]; {2-ая мат. функция пересечения}
                 inc(k)
             end;
         end;

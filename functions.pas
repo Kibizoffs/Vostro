@@ -3,7 +3,6 @@
     - функции в F1, F2, F3
     - строки в F1_STR, F2_STR, F3_STR
     - неравенства в Inside
-    - первообразные в P1, P2, P3
     - отрезки в SECTIONS
 }
 
@@ -14,8 +13,7 @@ interface
         fun_t = function(x: double): double;
         fun_arr_type = record
             f: array[1..3] of fun_t;
-            s: array[1..3] of string;
-            p: array[1..3] of fun_t
+            s: array[1..3] of string
         end; 
 
     const

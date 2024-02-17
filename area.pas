@@ -68,9 +68,9 @@ implementation
             fun_arr.s[1] + #10 +
             fun_arr.s[2] + #10 +
             fun_arr.s[3] + #10 +
-            MSG_CROSSES + '(' + FloatToStr(coords[1].x) + ', ' + FloatToStr(coords[1].y) + ')' + #10 + 
+            'x: ' + '(' + FloatToStr(coords[1].x) + ', ' + FloatToStr(coords[1].y) + ')' + #10 + 
             '   (' + FloatToStr(coords[2].x) + ', ' + FloatToStr(coords[2].y) + ')' + #10 + 
             '   (' + FloatToStr(coords[3].x) + ', ' + FloatToStr(coords[3].y) + ')' + #10 +
-            MSG_AREA + FloatToStr(s))
+            's: ' + FloatToStr(s))
     end;
 end.
